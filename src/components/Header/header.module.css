@@ -1,0 +1,7 @@
+.sticky {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background: rgb(207, 144, 27);
+  z-index: 2;
+}

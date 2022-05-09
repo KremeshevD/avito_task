@@ -1,0 +1,39 @@
+.textAlig {
+  text-align: justify;
+}
+.gray {
+  color: #828282;
+}
+.pointer:hover {
+  cursor: pointer;
+}
+
+.loadMore {
+  text-align: right;
+  font-size: 0.6em;
+  color: #828282;
+}
+
+.layout {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.slowAppearance {
+  position: relative;
+  animation-name: appea;
+  animation-duration: 1s;
+  transition-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes appea {
+  0% {
+    opacity: 0;
+    left: 30%;
+  }
+  100% {
+    opacity: 1;
+    left: 0%
+  }
+}

@@ -1,0 +1,74 @@
+.item_title {
+  grid-area: title;
+  font-size: 1.1em;
+  font-weight: 500;
+  align-self: start;
+  text-align: left;
+}
+.small_font {
+  font-size: 0.7em;
+  align-self: start;
+}
+.item_info {
+  grid-area: by;
+  align-self: start;
+}
+.item_num {
+  grid-area: num;
+  align-self: start;
+  justify-self: end;
+}
+
+.decorationRemove {
+  text-decoration: none;
+  color: rgb(56, 55, 55);
+}
+
+.gray {
+  color: #828282;
+}
+
+.layoutGrid {
+  display: grid;
+  place-items: start;
+  min-width: 600px;
+  width: 70%;
+  padding: 5px;
+  margin: auto;
+  column-gap: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  grid-template-columns: 1.5em auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'num title'
+    'num info';
+  background: rgba(240, 222, 152, 0.493);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  margin-top: 5px;
+  justify-items: start;
+}
+
+.slowAppearance {
+  position: relative;
+  animation-name: appea;
+  animation-duration: 1s;
+  transition-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes appea {
+  0% {
+    opacity: 0;
+    left: 30%;
+  }
+  100% {
+    opacity: 1;
+    left: 0%
+  }
+}
+
+
+
+
