@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   getComments,
-  getCurrentPage, getPostList,  updatePostList,
+  getCurrentPage, getPostList,  updateComments,  updatePostList,
 } from '../services/PostService';
 
 /* eslint-disable no-param-reassign */
@@ -78,16 +78,33 @@ export const postsSlice = createSlice({
       state.error = action.payload;
     },
     [getComments.pending]: (state) => {
+      state.isUpdating = true
       state.error = '';
     },
     [getComments.fulfilled]: (state, {payload}) => {
       state.currentPage.kids[payload.index] = payload.comments
+      state.isUpdating = false
       state.error = '';
     },
     [getComments.rejected]: (state, action) => {
+      state.isUpdating = false
+      state.error = action.payload;
+    },
+    [updateComments.pending]: (state) => {
+      state.isUpdating = true
+      state.error = '';
+    },
+    [updateComments.fulfilled]: (state, {payload}) => {
+      state.currentPage = payload
+      state.isUpdating = false
+      state.error = '';
+    },
+    [updateComments.rejected]: (state, action) => {
+      state.isUpdating = false
       state.error = action.payload;
     },
   },
 });
+
 
 export const { setTimer, cleartimer, clearCurrentPage } = postsSlice.actions;

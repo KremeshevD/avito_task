@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { fetchingPostDetail, loadKids, whatNew } from "../utils/utils";
+import { compareArray, fetchingPostDetail, loadKids, whatNew } from "../utils/utils";
 
 
 
@@ -7,7 +7,9 @@ export const getPostsDetails = createAsyncThunk (
     'posts/getPostsDetails',
     async (postList, {rejectWithValue}) => {
         try { 
-           return await fetchingPostDetail(postList)  
+            let result = await fetchingPostDetail(postList)
+            result =  result.filter( item => item !== null)
+            return  result
         } catch (error) {
             return rejectWithValue(error.message)
         }
@@ -97,3 +99,31 @@ export const getComments = createAsyncThunk (
     }
 )
 
+export const updateComments = createAsyncThunk(
+    'posts/updateComments',
+    async (_,{rejectWithValue, getState}) =>  {
+        try {
+            const { currentPage } = getState().posts
+            const parentId = currentPage.id
+            const updatedNews = (await fetchingPostDetail([parentId]))[0]
+            if (currentPage.kids) {
+                const baseArray = currentPage.kids.map( item => item.id)
+                const isUpdateNeeded = compareArray(baseArray, updatedNews.kids)
+                const loadedCommentsBranch =  currentPage.kids.reduce( (acc, items) => {
+                    if (items.kids && typeof items.kids[0] === 'object' && items.kids[0] !== null) {
+                        acc.push(items.id)
+                    }
+                    return acc
+                }, [])
+                const listForUpdate = [...loadedCommentsBranch, ...isUpdateNeeded]
+               const updatedComments = await Promise.all(listForUpdate.map(async item => 
+                   loadKids(item, loadedCommentsBranch.includes(item) )
+               ))
+               updatedNews.kids = updatedNews.map( item => item.id === updatedComments.id ? updatedComments : item)
+            }
+            return updatedNews           
+        } catch (error) {
+            return rejectWithValue(error.message) 
+        }
+    }
+)

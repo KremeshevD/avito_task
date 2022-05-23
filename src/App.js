@@ -1,19 +1,17 @@
-import './App.css';
 import { Route, Routes } from 'react-router';
 import { Header } from './components/Header/header';
-import { NewsList } from './components/NewsList/NewsList';
+import { PostsList } from './components/PostsList/PostsList';
 import { Post } from './components/Post/Post';
 
 function App() {
-  console.log('render');
 
   return (
 
-    <div className="App">
-      <div className="app-wrapper-content">
+    <div>
+      <div>
         <Header />
         <Routes>
-          <Route path="/" element={<NewsList />} />
+          <Route path="/" element={<PostsList />} />
           <Route path="/item/:id" element={<Post />} />
         </Routes>
       </div>

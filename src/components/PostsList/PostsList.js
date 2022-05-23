@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { cleartimer, setTimer } from "../../Redux/postsReducer";
 import { getPostList, updatePostList } from "../../services/PostService";
-import { NewsItem } from "./NewsItem";
+import { PostItem } from "./PostItem";
 
 
-export function NewsList() {
+export function PostsList() {
   const isFetching = useSelector( state => state.posts.isFetching)
   const postList = useSelector( state => state.posts.postList)
   const timerId = useSelector( state => state.posts.timer)
@@ -25,7 +25,7 @@ export function NewsList() {
     return  (
     <div>
         {isFetching && !listIsReady ? <div>Loading...</div>:
-        postList.map( (post, index) => <NewsItem post={post} index = {index} key={post.id}/>)
+        postList.map( (post, index) => <PostItem post={post} index = {index} key={post.id}/>)
         }
     </div>
 

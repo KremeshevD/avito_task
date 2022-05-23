@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { Comments } from './Comments';
 import { PostContent } from './PostContent';
 import s from './post.module.css';
+import { Comments } from '../Comments/Comments'
 import { getCurrentPage } from '../../services/PostService';
 import { clearCurrentPage } from '../../Redux/postsReducer';
 
@@ -29,10 +29,10 @@ export function Post() {
 }
 
 function Content({ currentPage }) {
-  console.log(currentPage)
   return (
     <div>
       <PostContent postdata={currentPage} />
+      <hr/>
       {currentPage.kids && <Comments comments={currentPage.kids} />}
     </div>
   );

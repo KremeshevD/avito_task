@@ -4,7 +4,6 @@ import s from "./postContent.module.css"
 
 export function PostContent({ postdata }) {
     return (
-        <div>
             <div  key={postdata.id} className={s.textAlign}>
              <div  
                     className={s.layoutGrid} 
@@ -18,6 +17,6 @@ export function PostContent({ postdata }) {
                     </div>
                 </div>
              </div>
-        </div>
+
     )
 }

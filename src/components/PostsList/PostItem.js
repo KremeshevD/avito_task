@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import s from './newsItem.module.css';
 
-export function NewsItem({ post, index }) {
+export function PostItem({ post, index }) {
   return (
     <div className={s.slowAppearance}>
       <Link to={`item/${post.id}`} className={s.decorationRemove}>

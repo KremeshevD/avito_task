@@ -9,9 +9,15 @@ export const whatNew = (newPost, prevPost) => {
     return different
 }
 
+export const compareArray = (baseArray, testArray) => testArray.filter(x => !baseArray.includes(x));
+
+
+
+
 export const fetchingPostDetail = (postsId) => {
+    const listForfetching = Array.isArray(postsId) ? postsId : [postsId]
     try {
-        const result = Promise.all(postsId.map(
+        const result = Promise.all(listForfetching.map(
             async  (postId) => {
               let post = await fetch(`https://hacker-news.firebaseio.com/v0/item/${postId}.json`)
               if(!post.ok) {
@@ -35,6 +41,5 @@ export const loadKids = async (kidsList, all) => {
     }
     return newItem
   }))
-  result = result.filter((item)=> !item.deleted && !item.dead)
   return result
 }
