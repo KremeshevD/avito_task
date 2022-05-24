@@ -26,7 +26,7 @@ export function CommentItem({comment}) {
                     <div className={s.gray}>{comment.by} | {(new Date(comment.time*1000)).toLocaleString()}</div>
                     <div dangerouslySetInnerHTML={{__html: comment.text }} />
                     {haveKids && kidsIsloaded ? 
-                        <CommentKids comments={comment.kids} /> 
+                        <CommentKids comments={comment.kids}/> 
                         : 
                         haveKids && <div className={s.loadMore} onClick={loadMore} role='button' data-id={comment.id}>Load more</div>} 
                 </div>

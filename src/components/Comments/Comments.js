@@ -8,7 +8,6 @@ export function Comments({comments}) {
 
     useEffect( () => {
         const id = setInterval(() => {
-                console.log(1)
                 dispatch(updateComments())
             }, 60000)
         return  () => {
